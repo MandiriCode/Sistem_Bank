@@ -1,0 +1,64 @@
+  body {
+      background: linear-gradient(135deg, #e3f2fd, #90caf9);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+
+  .dashboard-card {
+      background-color: white;
+      border-radius: 20px;
+      box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+      width: 100%;
+      max-width: 800px;
+  }
+
+  .feature {
+      border-radius: 15px;
+      background: #f1f3f5;
+      padding: 20px;
+      transition: 0.3s;
+      cursor: pointer;
+  }
+
+  .feature:hover {
+      background: #e0f7fa;
+      transform: scale(1.02);
+  }
+
+  .feature i {
+      font-size: 32px;
+      color: #0d6efd;
+  }
+
+  .feature h5 {
+      margin-top: 15px;
+      font-weight: bold;
+  }
+
+  /* style tarik */
+  .tarik-card {
+      background: #fff;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      max-width: 500px;
+      width: 100%;
+  }
+
+  .btn-nominal {
+      width: 48%;
+      margin: 1%;
+      font-weight: bold;
+      font-size: 1.1rem;
+  }
+
+  .form-control {
+      text-align: right;
+  }
+
+  h4 {
+      color: #0d6efd;
+  }
