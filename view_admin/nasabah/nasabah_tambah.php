@@ -1,4 +1,5 @@
 <?php
+session_start();
 include 'header.php';
 include '../../include/config.php';
 
@@ -11,8 +12,19 @@ if (isset($_POST['simpan'])) {
     $password = $_POST['password'];
 
 
-    mysqli_query($conn, "INSERT INTO nasabah (nama_nasabah, no_hp_nasabah, alamat_nasabah, no_rek_nasabah, saldo, password_nasabah) 
-        VALUES ('$nama', '$no_hp', '$alamat', '$no_rek', '$saldo', '$password')");
+    // Check for duplicate account number
+    $no_rek_check = $_POST['no_rek'];
+    $check_query = "SELECT * FROM nasabah WHERE no_rek_nasabah = '$no_rek_check'";
+    $result = mysqli_query($conn, $check_query);
+
+    if (mysqli_num_rows($result) > 0) {
+        $_SESSION['error_message'] = "Nomor rekening sudah ada!";
+        header("Location: nasabah_tambah.php");
+        exit;
+    } else {
+        mysqli_query($conn, "INSERT INTO nasabah (nama_nasabah, no_hp_nasabah, alamat_nasabah, no_rek_nasabah, saldo, password_nasabah)
+            VALUES ('$nama', '$no_hp', '$alamat', '$no_rek', '$saldo', '$password')");
+    }
 
     header("Location: data_nasabah.php");
 }
@@ -20,6 +32,12 @@ if (isset($_POST['simpan'])) {
 
 <div class="col-md-10 p-4">
     <h3>Tambah Nasabah Baru</h3>
+    <?php
+    if (isset($_SESSION['error_message'])) {
+        echo '<div class="alert alert-danger">' . $_SESSION['error_message'] . '</div>';
+        unset($_SESSION['error_message']); // Clear the error message after displaying
+    }
+    ?>
     <form method="POST">
         <div class="mb-3">
             <label>Nama Nasabah</label>
